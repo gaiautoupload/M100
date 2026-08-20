@@ -27,6 +27,6 @@ function groups(data, selected) {
 }
 const footer=()=>'<footer><strong>M100</strong><span>公開靜態資料版 · 僅供研究整理</span></footer>';
 function render(data){const route=location.hash.replace(/^#\/?/,"") || "/";const parts=route.split("/");app.innerHTML=parts[0]==="groups"?groups(data,parts[1]):home(data);document.querySelectorAll("[data-group]").forEach(el=>el.onclick=()=>location.hash=`/groups/${el.dataset.group}`)}
-async function start(){const data=await fetch("data/broker-wave-summary.json").then(r=>r.json());render(data);addEventListener("hashchange",()=>render(data));gate.hidden=true;app.hidden=false}
-form.addEventListener("submit",e=>{e.preventDefault();if(input.value===UI_PASSCODE){sessionStorage.setItem("m100-ui-unlocked","1");start()}else{error.hidden=false;input.select()}});
+async function start(){gate.hidden=true;app.hidden=false;app.innerHTML='<section class="section"><p class="eyebrow">M100</p><h1>資料載入中…</h1></section>';try{const response=await fetch("data/broker-wave-summary.json",{cache:"no-store"});if(!response.ok)throw new Error("snapshot unavailable");const data=await response.json();render(data);addEventListener("hashchange",()=>render(data))}catch{app.innerHTML='<section class="section"><p class="eyebrow">M100</p><h1>資料暫時無法載入</h1><p>請重新整理頁面後再試。</p></section>'}}
+form.addEventListener("submit",e=>{e.preventDefault();if(input.value===UI_PASSCODE){error.hidden=true;sessionStorage.setItem("m100-ui-unlocked","1");start()}else{error.hidden=false;input.select()}});
 if(sessionStorage.getItem("m100-ui-unlocked")==="1") start();
