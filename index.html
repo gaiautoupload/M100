@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow" />
+    <title>M100 興櫃主力群作戰室</title>
+    <meta name="description" content="公開版興櫃主力群觀察儀表板。" />
+    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="gate" class="gate" aria-labelledby="gate-title">
+      <div class="gate-panel">
+        <p class="eyebrow">M100 / PUBLIC DASHBOARD</p>
+        <h1 id="gate-title">興櫃主力群<br />作戰室</h1>
+        <p>此為公開資料版。通關碼只用於進入介面，不提供資料安全保護。</p>
+        <form id="gate-form">
+          <label for="passcode">介面通關碼</label>
+          <div class="password-row"><input id="passcode" inputmode="numeric" autocomplete="off" autofocus /><button>進入 →</button></div>
+          <p id="gate-error" class="error" hidden>通關碼不正確。</p>
+        </form>
+      </div>
+    </section>
+    <main id="app" hidden></main>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
