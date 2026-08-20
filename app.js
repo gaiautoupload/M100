@@ -5,6 +5,9 @@ const form = document.querySelector("#gate-form");
 const input = document.querySelector("#passcode");
 const error = document.querySelector("#gate-error");
 
+const wasUnlocked=()=>{try{return sessionStorage.getItem("m100-ui-unlocked")==="1"}catch{return false}};
+const rememberUnlock=()=>{try{sessionStorage.setItem("m100-ui-unlocked","1")}catch{}};
+
 const pct = (n) => n == null ? "—" : `${n >= 0 ? "+" : ""}${Number(n).toFixed(1)}%`;
 const money = (n) => n == null ? "—" : `${n >= 0 ? "+" : ""}${(Number(n) / 1e6).toFixed(1)}M`;
 const tone = (n) => Number(n) >= 0 ? "positive" : "negative";
@@ -28,5 +31,5 @@ function groups(data, selected) {
 const footer=()=>'<footer><strong>M100</strong><span>公開靜態資料版 · 僅供研究整理</span></footer>';
 function render(data){const route=location.hash.replace(/^#\/?/,"") || "/";const parts=route.split("/");app.innerHTML=parts[0]==="groups"?groups(data,parts[1]):home(data);document.querySelectorAll("[data-group]").forEach(el=>el.onclick=()=>location.hash=`/groups/${el.dataset.group}`)}
 async function start(){gate.hidden=true;app.hidden=false;app.innerHTML='<section class="section"><p class="eyebrow">M100</p><h1>資料載入中…</h1></section>';try{const response=await fetch("data/broker-wave-summary.json",{cache:"no-store"});if(!response.ok)throw new Error("snapshot unavailable");const data=await response.json();render(data);addEventListener("hashchange",()=>render(data))}catch{app.innerHTML='<section class="section"><p class="eyebrow">M100</p><h1>資料暫時無法載入</h1><p>請重新整理頁面後再試。</p></section>'}}
-form.addEventListener("submit",e=>{e.preventDefault();if(input.value===UI_PASSCODE){error.hidden=true;sessionStorage.setItem("m100-ui-unlocked","1");start()}else{error.hidden=false;input.select()}});
-if(sessionStorage.getItem("m100-ui-unlocked")==="1") start();
+form.addEventListener("submit",e=>{e.preventDefault();if(input.value.trim()===UI_PASSCODE){error.hidden=true;rememberUnlock();start()}else{error.hidden=false;input.select()}});
+if(wasUnlocked()) start();
