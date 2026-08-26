@@ -5,7 +5,7 @@ const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>'
 const date=v=>v?esc(v):'—';
 const pct=v=>v===null||v===undefined?'—':`${Number(v).toFixed(1)}%`;
 const money=v=>v===null||v===undefined?'—':`${Number(v).toLocaleString('zh-TW')}`;
-const tone=v=>Number(v)>0?'up':Number(v)<0?'down':'';
+const tone=v=>Number(v)>0?'gain':Number(v)<0?'loss':'';
 const flowTone=v=>{const n=Number(v);if(!Number.isFinite(n)||n===0)return'';const level=Math.abs(n)>=50000000?'strong':Math.abs(n)>=10000000?'medium':'light';return `${n>0?'buy':'sell'}-${level}`};
 const status=v=>v==='SETTLED'?'已出場':v==='OPEN'?'持有中':v||'—';
 const stage=v=>({BUILDING:'建倉中',ACCUMULATING:'建倉／加碼中',ADDING:'加碼中',HOLDING:'持有中',LOCKED:'持有觀察',EXITING:'出場中',SETTLED:'已結算'})[v]||v||'—';

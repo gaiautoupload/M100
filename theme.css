@@ -1,0 +1,22 @@
+:root{
+  --ink:#edf1f7;
+  --muted:#aab3c2;
+  --bg:#11151d;
+  --panel:#1b2230;
+  --line:#303a4c;
+  --gold:#e5c57d;
+}
+body{background:radial-gradient(circle at 88% -10%,#2b3548 0,#11151d 48%,#0d1118 100%)}
+header{border-color:var(--line);background:#121822cc;backdrop-filter:blur(10px)}
+.summary div,.card{background:linear-gradient(145deg,#202938,#171e2a);border-color:var(--line)}
+.group-card:hover{border-color:#e5c57d}
+.hero,.date-strip,footer{border-color:var(--line)}
+.pill{border-color:#52617a;color:#d6dfef;background:#252f40}
+input{background:#121823;border-color:#46546c}
+
+/* 報酬：正報酬粉紅／紅，負報酬綠；底色保持中性避免混淆。 */
+.metrics .gain{color:#ff6f99!important}
+.metrics .loss{color:#6fd397!important}
+.metrics .buy-light{color:#e9a5b7!important}.metrics .buy-medium{color:#f1769b!important}.metrics .buy-strong{color:#ff4f82!important}
+.metrics .sell-light{color:#a8dbb8!important}.metrics .sell-medium{color:#6fc78b!important}.metrics .sell-strong{color:#35a968!important}
+.date-strip .entry-date{color:#e7a1b4}.date-strip .entry-date b{color:#ffabc3}.date-strip .exit-date{color:#9dd4b0}.date-strip .exit-date b{color:#a9edbf}
