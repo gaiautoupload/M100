@@ -4,7 +4,7 @@ const $=s=>document.querySelector(s);
 const esc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const date=v=>v?esc(v):'—';
 const pct=v=>v===null||v===undefined?'—':`${Number(v).toFixed(1)}%`;
-const money=v=>{if(v===null||v===undefined||!Number.isFinite(Number(v)))return'—';const w=Number(v)/10000;return `${w.toLocaleString('zh-TW',{minimumFractionDigits:1,maximumFractionDigits:1})} 萬`};
+const money=v=>{if(v===null||v===undefined||!Number.isFinite(Number(v)))return'—';const n=Number(v),unit=Math.abs(n)>=100000000?'億':'萬',value=unit==='億'?n/100000000:n/10000;return `${value.toLocaleString('zh-TW',{minimumFractionDigits:1,maximumFractionDigits:1})} ${unit}`};
 const tone=v=>Number(v)>0?'gain':Number(v)<0?'loss':'';
 const flowTone=v=>{const n=Number(v);if(!Number.isFinite(n)||n===0)return'';const level=Math.abs(n)>=50000000?'strong':Math.abs(n)>=10000000?'medium':'light';return `${n>0?'buy':'sell'}-${level}`};
 const status=v=>v==='SETTLED'?'已出場':v==='OPEN'?'持有中':v||'—';
