@@ -19,4 +19,10 @@ input{background:#121823;border-color:#46546c}
 .metrics .loss{color:#6fd397!important}
 .metrics .buy-light{color:#e9a5b7!important}.metrics .buy-medium{color:#f1769b!important}.metrics .buy-strong{color:#ff4f82!important}
 .metrics .sell-light{color:#a8dbb8!important}.metrics .sell-medium{color:#6fc78b!important}.metrics .sell-strong{color:#35a968!important}
-.date-strip .entry-date{color:#e7a1b4}.date-strip .entry-date b{color:#ffabc3}.date-strip .exit-date{color:#9dd4b0}.date-strip .exit-date b{color:#a9edbf}
+.date-strip span{padding:7px 8px;border-radius:7px;background:#202938}
+.date-strip .entry-date{color:#f4b8c8;background:#4b2839}
+.date-strip .entry-date b{color:#ffd5df}
+.date-strip .entry-add{background:linear-gradient(135deg,#7b294b,#5b253f);box-shadow:inset 0 0 0 1px #bd5377}
+.date-strip .entry-add b{color:#fff0f4}
+.date-strip .exit-date{color:#b8e3c5;background:#213f32}
+.date-strip .exit-date b{color:#d8ffe4}
